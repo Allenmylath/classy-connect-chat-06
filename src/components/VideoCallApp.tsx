@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StartupForm } from "./StartupForm";
 import { ChatConsole } from "./ChatConsole";
 import { ConnectionButton } from "./ConnectionButton";
+import { WelcomeBanner } from "./WelcomeBanner";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { MessageCircle } from "lucide-react";
@@ -12,6 +13,7 @@ export function VideoCallApp() {
     setIsConnected(connected);
   };
   return <div className="min-h-screen bg-background p-4">
+      <WelcomeBanner />
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
