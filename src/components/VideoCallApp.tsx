@@ -5,17 +5,13 @@ import { ConnectionButton } from "./ConnectionButton";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { MessageCircle } from "lucide-react";
-
 export function VideoCallApp() {
   const [isConnected, setIsConnected] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  
   const handleConnectionChange = (connected: boolean) => {
     setIsConnected(connected);
   };
-  
-  return (
-    <div className="min-h-screen bg-background p-4">
+  return <div className="min-h-screen bg-background p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
@@ -23,7 +19,7 @@ export function VideoCallApp() {
             <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
               SuperBryn- Bryn storm
             </h1>
-            <p className="text-muted-foreground">Next-generation AI video calling</p>
+            
           </div>
           
           {/* Connection Button - Top Right */}
@@ -43,11 +39,7 @@ export function VideoCallApp() {
         {/* Floating Chat Button */}
         <Sheet open={isChatOpen} onOpenChange={setIsChatOpen}>
           <SheetTrigger asChild>
-            <Button
-              size="lg"
-              className="fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 animate-pulse-glow"
-              variant="connect"
-            >
+            <Button size="lg" className="fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 animate-pulse-glow" variant="connect">
               <MessageCircle className="h-6 w-6" />
             </Button>
           </SheetTrigger>
@@ -66,6 +58,5 @@ export function VideoCallApp() {
           <p>Click connect to start your AI-powered video call experience</p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
