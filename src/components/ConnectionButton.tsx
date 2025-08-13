@@ -156,7 +156,7 @@ export function ConnectionButton({ onConnectionChange }: ConnectionButtonProps) 
         disabled={isDisabled}
         variant={connected ? "disconnect" : "connect"}
         size="lg"
-        className="px-8 py-4 text-lg font-semibold rounded-full shadow-elegant hover:shadow-glow transition-all duration-300"
+        className="px-6 py-3 text-base font-semibold rounded-full shadow-elegant hover:shadow-glow transition-all duration-300"
       >
         {isDisabled ? (
           <>
