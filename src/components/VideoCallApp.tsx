@@ -83,7 +83,7 @@ export function VideoCallApp() {
               className={`fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 ${
                 isBotSpeaking 
                   ? 'animate-pulse shadow-glow bg-gradient-to-r from-primary to-primary-glow scale-110 ring-4 ring-primary/30' 
-                  : 'animate-pulse-glow'
+                  : ''
               }`}
               variant="connect"
             >
