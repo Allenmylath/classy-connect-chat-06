@@ -21,7 +21,7 @@ export function VideoCallApp() {
         <div className="flex justify-between items-center mb-8">
           <div className="text-center flex-1">
             <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-2">
-              Jesicca ai Video bot
+              SuperBryn- Bryn storm
             </h1>
             <p className="text-muted-foreground">Next-generation AI video calling</p>
           </div>
