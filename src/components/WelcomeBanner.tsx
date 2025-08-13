@@ -33,7 +33,8 @@ export function WelcomeBanner() {
 
           <div className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              This is an AI-powered form application that helps you create and manage forms intelligently.
+              This is an AI-powered form application that helps you create and manage forms intelligently. 
+              <strong>Click "Connect" to start chatting with AI.</strong>
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4">
