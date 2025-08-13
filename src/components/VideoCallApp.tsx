@@ -126,7 +126,7 @@ export function VideoCallApp() {
       </div>
 
       {/* Custom CSS for enhanced pulsing effects */}
-      <style jsx>{`
+      <style>{`
         @keyframes gentle-pulse {
           0%, 100% { 
             opacity: 1; 
