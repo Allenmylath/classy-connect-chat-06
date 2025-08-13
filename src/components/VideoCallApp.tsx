@@ -2,9 +2,13 @@ import { useState } from "react";
 import { StartupForm } from "./StartupForm";
 import { ChatConsole } from "./ChatConsole";
 import { ConnectionButton } from "./ConnectionButton";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { MessageCircle } from "lucide-react";
 
 export function VideoCallApp() {
   const [isConnected, setIsConnected] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   
   const handleConnectionChange = (connected: boolean) => {
     setIsConnected(connected);
@@ -29,17 +33,33 @@ export function VideoCallApp() {
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 h-[calc(100vh-200px)]">
-          {/* Form Section */}
-          <div className="h-1/2 lg:h-full lg:flex-1">
+        <div className="flex justify-center h-[calc(100vh-200px)]">
+          {/* Form Section - Full Width */}
+          <div className="w-full max-w-2xl">
             <StartupForm isConnected={isConnected} />
           </div>
-
-          {/* Chat Section */}
-          <div className="h-1/2 lg:h-full lg:w-96">
-            <ChatConsole isConnected={isConnected} />
-          </div>
         </div>
+
+        {/* Floating Chat Button */}
+        <Sheet open={isChatOpen} onOpenChange={setIsChatOpen}>
+          <SheetTrigger asChild>
+            <Button
+              size="lg"
+              className="fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50"
+              variant="connect"
+            >
+              <MessageCircle className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-96 p-0">
+            <SheetHeader className="p-4 border-b">
+              <SheetTitle>Chat Console</SheetTitle>
+            </SheetHeader>
+            <div className="h-[calc(100vh-80px)]">
+              <ChatConsole isConnected={isConnected} />
+            </div>
+          </SheetContent>
+        </Sheet>
 
         {/* Footer */}
         <div className="text-center mt-8 text-sm text-muted-foreground">
