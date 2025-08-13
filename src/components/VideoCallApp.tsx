@@ -89,6 +89,8 @@ export function VideoCallApp() {
             >
               <MessageCircle className={`h-6 w-6 ${isBotSpeaking ? 'animate-bounce' : ''}`} />
             </Button>
+              <MessageCircle className={`h-6 w-6 ${isBotSpeaking ? 'animate-bounce' : ''}`} />
+            </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-96 p-0">
             <SheetHeader className="p-4 border-b">
