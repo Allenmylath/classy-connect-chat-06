@@ -45,7 +45,7 @@ export function VideoCallApp() {
           <SheetTrigger asChild>
             <Button
               size="lg"
-              className="fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50"
+              className="fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 animate-pulse-glow"
               variant="connect"
             >
               <MessageCircle className="h-6 w-6" />
