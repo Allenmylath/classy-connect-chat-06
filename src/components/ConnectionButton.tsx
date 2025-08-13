@@ -133,7 +133,7 @@ export function ConnectionButton({
   const isConnectingOrInitializing = transportState === "connecting" || transportState === "initializing" || transportState === "initialized" || transportState === "authenticating" || transportState === "authenticated";
   const isDisabled = isConnecting || isConnectingOrInitializing;
   return <div className="flex flex-col items-center gap-4">
-      <Button onClick={handleToggleConnection} disabled={isDisabled} variant={connected ? "disconnect" : "connect"} size="lg" className="px-6 py-3 text-base font-semibold rounded-full shadow-elegant hover:shadow-glow transition-all duration-300">
+      <Button onClick={handleToggleConnection} disabled={isDisabled} variant={connected ? "disconnect" : "connect"} size="lg" className="px-8 py-4 text-base font-semibold rounded-full shadow-elegant hover:shadow-glow transition-all duration-300 min-w-[140px]">
         {isDisabled ? <>
             <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
             {transportState === "connecting" ? "Connecting..." : transportState === "ready" ? "Getting Ready..." : "Initializing..."}
