@@ -81,13 +81,13 @@ export function VideoCallApp() {
             <Button 
               size="lg" 
               className={`fixed bottom-6 right-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-50 ${
-                isBotSpeaking 
+                isConnected && isBotSpeaking 
                   ? 'animate-pulse shadow-glow scale-110 ring-4 ring-primary/30' 
                   : ''
               }`}
               variant="connect"
             >
-              <MessageCircle className={`h-6 w-6 ${isBotSpeaking ? 'animate-bounce' : ''}`} />
+              <MessageCircle className={`h-6 w-6 ${isConnected && isBotSpeaking ? 'animate-bounce' : ''}`} />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-96 p-0">
