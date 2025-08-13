@@ -182,7 +182,7 @@ export function ConnectionButton({ onConnectionChange }: ConnectionButtonProps) 
         <p className="text-sm text-muted-foreground">
           {connected 
             ? "Click to end the call" 
-            : "Click to start a video call with AI"
+            : "Click to start a call with AI"
           }
         </p>
         <p className="text-xs text-muted-foreground mt-1">
