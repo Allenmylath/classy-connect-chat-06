@@ -231,12 +231,7 @@ export function ConnectionButton({
       
       // Step 2: Test connect endpoint
       log('info', '🔗 Step 2: Testing connect endpoint...');
-      const requestData = {
-        services: {
-          llm: "openai",
-          tts: "cartesia"
-        }
-      };
+      const requestData = {}; // Empty since backend doesn't use the services config
       
       const connectTest = await testConnectEndpoint(connectUrl, requestData);
       
@@ -249,7 +244,7 @@ export function ConnectionButton({
       
       const connectionConfig = {
         endpoint: connectUrl,
-        requestData,
+        requestData: {}, // Empty object since backend doesn't use this data
         timeout: 30000, // 30 second timeout
         enableMic: true,
         enableCam: false,
