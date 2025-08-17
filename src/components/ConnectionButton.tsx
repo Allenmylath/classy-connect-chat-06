@@ -85,7 +85,7 @@ export function ConnectionButton({
 
       // Updated to match the simplified backend endpoint
       await pipecatClient.connect({
-        endpoint: `${import.meta.env.VITE_PIPECAT_API_URL || "https://manjujayamurali--pipecat-modal-fastapi-app.modal.run"}/connect`,
+        endpoint: `${import.meta.env.VITE_PIPECAT_API_URL || "https://manjujayamurali--superbryn-form-bot-fastapi-app.modal.run"}/connect`,
         requestData: {
           // This matches the ConnectData model in the backend
           services: {
