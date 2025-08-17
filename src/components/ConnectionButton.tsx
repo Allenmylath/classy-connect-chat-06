@@ -117,6 +117,20 @@ export function ConnectionButton({
     });
   }, [toast]));
 
+  // Listen to disconnect events
+  useRTVIClientEvent(RTVIEvent.Disconnected, useCallback(() => {
+    log('warn', 'RTVI Disconnected event received');
+  }, []));
+
+  // Listen to bot events
+  useRTVIClientEvent(RTVIEvent.BotConnected, useCallback((participant: any) => {
+    log('info', 'Bot connected event received', participant);
+  }, []));
+
+  useRTVIClientEvent(RTVIEvent.BotDisconnected, useCallback((participant: any) => {
+    log('warn', 'Bot disconnected event received', participant);
+  }, []));
+
   const testEndpoint = async (url: string) => {
     try {
       log('info', `Testing endpoint: ${url}`);
@@ -235,14 +249,40 @@ export function ConnectionButton({
       
       const connectionConfig = {
         endpoint: connectUrl,
-        requestData
+        requestData,
+        timeout: 30000, // 30 second timeout
+        enableMic: true,
+        enableCam: false,
       };
       
       log('info', 'Connection config', connectionConfig);
       
-      await pipecatClient.connect(connectionConfig);
+      // Set up additional error monitoring before connection
+      const originalOnError = window.onerror;
+      const originalOnUnhandledRejection = window.onunhandledrejection;
       
-      log('info', '✅ Pipecat connection initiated successfully');
+      window.onerror = (message, source, lineno, colno, error) => {
+        if (source?.includes('pipecat') || message?.includes('pipecat')) {
+          log('error', 'Window error during connection', { message, source, lineno, colno, error });
+        }
+        return originalOnError?.(message, source, lineno, colno, error);
+      };
+      
+      window.onunhandledrejection = (event) => {
+        if (event.reason?.message?.includes('transport') || event.reason?.message?.includes('Daily')) {
+          log('error', 'Unhandled rejection during connection', event.reason);
+        }
+        return originalOnUnhandledRejection?.(event);
+      };
+      
+      try {
+        await pipecatClient.connect(connectionConfig);
+        log('info', '✅ Pipecat connection initiated successfully');
+      } finally {
+        // Restore original error handlers
+        window.onerror = originalOnError;
+        window.onunhandledrejection = originalOnUnhandledRejection;
+      }
       
     } catch (error) {
       log('error', 'Connection failed with error', {
