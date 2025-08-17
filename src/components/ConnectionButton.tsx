@@ -257,17 +257,23 @@ export function ConnectionButton({
       const originalOnUnhandledRejection = window.onunhandledrejection;
       
       window.onerror = (message, source, lineno, colno, error) => {
-        if (source?.includes('pipecat') || message?.includes('pipecat')) {
+        if (typeof source === 'string' && source.includes('pipecat') || 
+            typeof message === 'string' && message.includes('pipecat')) {
           log('error', 'Window error during connection', { message, source, lineno, colno, error });
         }
-        return originalOnError?.(message, source, lineno, colno, error);
+        if (originalOnError) {
+          return originalOnError.call(window, message, source, lineno, colno, error);
+        }
+        return false;
       };
       
       window.onunhandledrejection = (event) => {
         if (event.reason?.message?.includes('transport') || event.reason?.message?.includes('Daily')) {
           log('error', 'Unhandled rejection during connection', event.reason);
         }
-        return originalOnUnhandledRejection?.(event);
+        if (originalOnUnhandledRejection) {
+          return originalOnUnhandledRejection.call(window, event);
+        }
       };
       
       try {

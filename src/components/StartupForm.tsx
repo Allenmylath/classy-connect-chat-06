@@ -219,11 +219,13 @@ export function StartupForm({ isConnected }: StartupFormProps) {
     setIsSubmitting(true);
     
     // Send the field data to the bot using RTVI client messages
-    pipecatClient.sendClientMessage("form_field_data", {
-      field: field,
-      value: value,
-      timestamp: new Date().toISOString()
-    }).catch((error) => {
+    try {
+      pipecatClient.sendClientMessage("form_field_data", {
+        field: field,
+        value: value,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
       console.error("❌ Failed to send field data:", error);
       setIsSubmitting(false);
       toast({
@@ -231,7 +233,7 @@ export function StartupForm({ isConnected }: StartupFormProps) {
         description: "Failed to send data to server. Please try again.",
         variant: "destructive"
       });
-    });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -269,10 +271,12 @@ export function StartupForm({ isConnected }: StartupFormProps) {
     setIsSubmitting(true);
     
     // Send complete form data
-    pipecatClient.sendClientMessage("form_complete", {
-      data: formData,
-      timestamp: new Date().toISOString()
-    }).catch((error) => {
+    try {
+      pipecatClient.sendClientMessage("form_complete", {
+        data: formData,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
       console.error("❌ Failed to complete form:", error);
       setIsSubmitting(false);
       toast({
@@ -280,7 +284,7 @@ export function StartupForm({ isConnected }: StartupFormProps) {
         description: "Failed to submit form. Please try again.",
         variant: "destructive"
       });
-    });
+    }
   };
 
   const handleReset = () => {
@@ -308,11 +312,13 @@ export function StartupForm({ isConnected }: StartupFormProps) {
   const requestCurrentField = () => {
     if (!isConnected || !pipecatClient) return;
     
-    pipecatClient.sendClientMessage("get_current_field", {
-      timestamp: new Date().toISOString()
-    }).catch((error) => {
+    try {
+      pipecatClient.sendClientMessage("get_current_field", {
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
       console.error("❌ Failed to get current field:", error);
-    });
+    }
   };
 
   // Request current field info when connected
